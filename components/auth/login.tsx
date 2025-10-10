@@ -1,24 +1,28 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { login, signInWithGoogle, signInWithGitHub } from "@/app/auth/actions";
 
 interface LoginProps {
   buttonText?: string;
   googleText?: string;
+  githubText?: string;
   signupText?: string;
   signupUrl?: string;
+  forgotPasswordUrl?: string;
 }
 
 const Login = ({
   buttonText = "Login",
-  googleText = "Login with Google",
+  googleText = "Continue with Google",
+  githubText = "Continue with GitHub",
   signupText = "Need an account?",
   signupUrl = "/signup",
+  forgotPasswordUrl = "/forgot-password",
 }: LoginProps = {}) => {
   return (
     <section className="bg-background py-32">
@@ -36,10 +40,19 @@ const Login = ({
               Nextbase
             </span>
           <div className="min-w-sm flex w-full max-w-sm flex-col items-center gap-y-4 rounded-lg border px-6 py-12">
-            <Button className="w-full">
-              <FcGoogle className="mr-2 size-5" />
-              {googleText}
-            </Button>
+            <form action={signInWithGoogle} className="w-full">
+              <Button type="submit" variant="outline" className="w-full">
+                <FcGoogle className="mr-2 size-5" />
+                {googleText}
+              </Button>
+            </form>
+
+            <form action={signInWithGitHub} className="w-full">
+              <Button type="submit" variant="outline" className="w-full">
+                <FaGithub className="mr-2 size-5" />
+                {githubText}
+              </Button>
+            </form>
 
             <div className="relative flex w-full items-center justify-center py-2">
               <div className="border-border absolute h-[1px] w-full border-t"></div>
@@ -48,7 +61,7 @@ const Login = ({
               </span>
             </div>
 
-            <form className="flex w-full flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+            <form action={login} className="flex w-full flex-col gap-4">
               <div className="flex w-full flex-col gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -62,7 +75,15 @@ const Login = ({
                 />
               </div>
               <div className="flex w-full flex-col gap-2">
-                <Label htmlFor="password">Password</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Password</Label>
+                  <Link
+                    href={forgotPasswordUrl}
+                    className="text-xs text-muted-foreground hover:text-primary"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
                 <Input
                   id="password"
                   name="password"

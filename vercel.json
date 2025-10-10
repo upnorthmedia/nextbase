@@ -1,0 +1,4 @@
+{
+  "installCommand": "pnpm install --ignore-scripts && pnpm rebuild @tailwindcss/oxide sharp",
+  "buildCommand": "pnpm build"
+}
