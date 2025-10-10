@@ -4,13 +4,11 @@ import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
-import { signup, signInWithGoogle, signInWithGitHub } from "@/app/auth/actions";
+import { signup, signInWithGoogle } from "@/app/auth/actions";
 
 interface SignupProps {
   buttonText?: string;
   googleText?: string;
-  githubText?: string;
   signupText?: string;
   signupUrl?: string;
 }
@@ -18,7 +16,6 @@ interface SignupProps {
 const Signup = ({
   buttonText = "Create Account",
   googleText = "Continue with Google",
-  githubText = "Continue with GitHub",
   signupText = "Already a user?",
   signupUrl = "/login",
 }: SignupProps) => {
@@ -42,13 +39,6 @@ const Signup = ({
               <Button type="submit" variant="outline" className="w-full">
                 <FcGoogle className="mr-2 size-5" />
                 {googleText}
-              </Button>
-            </form>
-
-            <form action={signInWithGitHub} className="w-full">
-              <Button type="submit" variant="outline" className="w-full">
-                <FaGithub className="mr-2 size-5" />
-                {githubText}
               </Button>
             </form>
 

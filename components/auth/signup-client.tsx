@@ -6,9 +6,8 @@ import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import { CheckCircle2, Mail } from "lucide-react";
-import { signInWithGoogle, signInWithGitHub } from "@/app/auth/actions";
+import { signInWithGoogle } from "@/app/auth/actions";
 import { signupAction } from "@/app/auth/actions-client";
 import { useRouter } from "next/navigation";
 import { useTransition, useState } from "react";
@@ -16,7 +15,6 @@ import { useTransition, useState } from "react";
 interface SignupProps {
   buttonText?: string;
   googleText?: string;
-  githubText?: string;
   loginText?: string;
   loginUrl?: string;
 }
@@ -24,7 +22,6 @@ interface SignupProps {
 export function SignupClient({
   buttonText = "Create Account",
   googleText = "Continue with Google",
-  githubText = "Continue with GitHub",
   loginText = "Already a user?",
   loginUrl = "/login",
 }: SignupProps = {}) {
@@ -95,9 +92,9 @@ export function SignupClient({
               </div>
 
               <div className="flex flex-col items-center gap-3 w-full">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Mail className="h-4 w-4" />
-                  <span>Click the link in your email to confirm your account</span>
+                <div className="flex flex-col items-center gap-3 text-sm text-muted-foreground">
+                  <Mail className="h-5 w-5" />
+                  <span className="text-center">Click the link in your email to confirm your account</span>
                 </div>
 
                 <div className="relative w-full my-4">
@@ -122,13 +119,6 @@ export function SignupClient({
                 <Button type="submit" variant="outline" className="w-full" disabled={isPending}>
                   <FcGoogle className="mr-2 size-5" />
                   {googleText}
-                </Button>
-              </form>
-
-              <form action={signInWithGitHub} className="w-full">
-                <Button type="submit" variant="outline" className="w-full" disabled={isPending}>
-                  <FaGithub className="mr-2 size-5" />
-                  {githubText}
                 </Button>
               </form>
 

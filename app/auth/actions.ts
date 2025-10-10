@@ -97,25 +97,6 @@ export async function signInWithGoogle() {
   }
 }
 
-export async function signInWithGitHub() {
-  const supabase = await createClient()
-  const siteURL = getSiteURL()
-
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'github',
-    options: {
-      redirectTo: `${siteURL}/auth/confirm`,
-    },
-  })
-
-  if (error) {
-    redirect('/login?error=Error with GitHub sign in')
-  }
-
-  if (data.url) {
-    redirect(data.url)
-  }
-}
 
 export async function resetPassword(formData: FormData) {
   const supabase = await createClient()
