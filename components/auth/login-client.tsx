@@ -10,7 +10,7 @@ import { signInWithGoogle } from "@/app/auth/actions";
 import { loginAction } from "@/app/auth/actions-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { useTransition } from "react";
+import { useTransition, useEffect } from "react";
 
 interface LoginProps {
   buttonText?: string;
@@ -18,6 +18,8 @@ interface LoginProps {
   signupText?: string;
   signupUrl?: string;
   forgotPasswordUrl?: string;
+  message?: string;
+  error?: string;
 }
 
 export function LoginClient({
@@ -26,9 +28,25 @@ export function LoginClient({
   signupText = "Need an account?",
   signupUrl = "/signup",
   forgotPasswordUrl = "/forgot-password",
+  message,
+  error,
 }: LoginProps = {}) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
+
+  // Display message or error from URL params (e.g., after email verification)
+  useEffect(() => {
+    if (message) {
+      toast.success(message)
+      // Clean up URL to remove the message param
+      router.replace('/login')
+    }
+    if (error) {
+      toast.error(error)
+      // Clean up URL to remove the error param
+      router.replace('/login')
+    }
+  }, [message, error, router])
 
   async function handleLogin(formData: FormData) {
     startTransition(async () => {

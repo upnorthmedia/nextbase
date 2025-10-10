@@ -21,6 +21,10 @@ export default function AuthErrorPage({
         return 'Invalid authentication request. Please try signing in again.'
       case 'access_denied':
         return 'Access was denied during the authentication process.'
+      case 'verification_expired':
+        return 'This verification link has expired. Please sign up again or request a new verification email.'
+      case 'verification_failed':
+        return 'Unable to verify your email. The link may be invalid or already used.'
       default:
         return 'Sorry, there was an error confirming your authentication. This link may have expired or already been used.'
     }

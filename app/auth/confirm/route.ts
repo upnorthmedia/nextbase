@@ -56,12 +56,45 @@ export async function GET(request: Request) {
     })
 
     if (!error) {
-      // Redirect to the specified next URL or dashboard
-      const redirectUrl = new URL(next, origin)
-      return NextResponse.redirect(redirectUrl)
-    }
+      // Email verified successfully - redirect to login with success message
+      // We don't auto-login for security best practices
+      if (type === 'signup' || type === 'email') {
+        const loginUrl = new URL('/login', origin)
+        loginUrl.searchParams.set('message', 'Email verified successfully! Please log in to continue.')
+        return NextResponse.redirect(loginUrl)
+      }
 
-    console.error('Error verifying OTP:', error)
+      // For password recovery or email change, redirect to the next URL
+      if (type === 'recovery' || type === 'email_change') {
+        const redirectUrl = new URL(next, origin)
+        return NextResponse.redirect(redirectUrl)
+      }
+
+      // For invites, redirect to dashboard (they should already have a session)
+      if (type === 'invite') {
+        const redirectUrl = new URL('/dashboard', origin)
+        return NextResponse.redirect(redirectUrl)
+      }
+    } else {
+      // Handle specific verification errors
+      console.error('Error verifying OTP:', error)
+      const errorUrl = new URL('/auth/error', origin)
+
+      if (error.message?.includes('expired')) {
+        errorUrl.searchParams.set('error', 'verification_expired')
+        errorUrl.searchParams.set('description', 'This verification link has expired. Please request a new one.')
+      } else if (error.message?.includes('already confirmed') || error.message?.includes('already been confirmed')) {
+        // Email already verified - redirect to login
+        const loginUrl = new URL('/login', origin)
+        loginUrl.searchParams.set('message', 'Your email is already verified. Please log in.')
+        return NextResponse.redirect(loginUrl)
+      } else {
+        errorUrl.searchParams.set('error', 'verification_failed')
+        errorUrl.searchParams.set('description', 'Unable to verify your email. The link may be invalid or already used.')
+      }
+
+      return NextResponse.redirect(errorUrl)
+    }
   }
 
   // If we reach here, something went wrong
