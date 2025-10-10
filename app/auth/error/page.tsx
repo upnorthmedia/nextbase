@@ -1,7 +1,31 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-export default function AuthErrorPage() {
+export default function AuthErrorPage({
+  searchParams,
+}: {
+  searchParams: { error?: string; description?: string }
+}) {
+  const error = searchParams.error
+  const description = searchParams.description
+
+  const getErrorMessage = () => {
+    if (description) return description
+
+    switch (error) {
+      case 'session_exchange_failed':
+        return 'Failed to complete the sign-in process. Please try again.'
+      case 'unexpected_error':
+        return 'An unexpected error occurred. Please try again.'
+      case 'invalid_request':
+        return 'Invalid authentication request. Please try signing in again.'
+      case 'access_denied':
+        return 'Access was denied during the authentication process.'
+      default:
+        return 'Sorry, there was an error confirming your authentication. This link may have expired or already been used.'
+    }
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-md flex-col items-center space-y-6 text-center">
@@ -10,8 +34,13 @@ export default function AuthErrorPage() {
             Authentication Error
           </h1>
           <p className="text-sm text-muted-foreground">
-            Sorry, there was an error confirming your authentication. This link may have expired or already been used.
+            {getErrorMessage()}
           </p>
+          {error && process.env.NODE_ENV === 'development' && (
+            <p className="text-xs text-muted-foreground font-mono">
+              Error code: {error}
+            </p>
+          )}
         </div>
 
         <div className="flex gap-4">
