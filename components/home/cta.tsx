@@ -20,19 +20,19 @@ const Cta = ({
   description = "Build faster with our collection of pre-built blocks. Speed up your development and ship features in record time.",
   buttons = {
     primary: {
-      text: "Buy Now",
-      url: "https://www.shadcnblocks.com",
+      text: "Get Started",
+      url: "/signup",
     },
     secondary: {
-      text: "Contact Us",
-      url: "https://www.shadcnblocks.com",
+      text: "Let's Talk",
+      url: "/contact",
     },
   },
 }: CtaProps) => {
   return (
     <section className="py-22">
       <div className="container">
-        <div className="bg-accent rounded-lg p-8 md:rounded-xl lg:p-12">
+        <div className="bg-muted rounded-lg p-8 md:rounded-xl lg:p-12">
           <div className="mx-auto max-w-4xl text-center">
             <h3 className="mb-4 text-3xl font-semibold md:text-5xl lg:mb-6 lg:text-6xl">
               {heading}

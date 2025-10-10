@@ -5,7 +5,7 @@ import { SITEMAP_PRIORITY, SITEMAP_CHANGE_FREQUENCY } from '@/lib/seo/constants'
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date();
 
-  // Define your static routes here
+  // Define your actual app routes
   const staticRoutes = [
     {
       url: generateURL('/'),
@@ -14,44 +14,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: SITEMAP_PRIORITY.home,
     },
     {
-      url: generateURL('/about'),
+      url: generateURL('/login'),
       lastModified: currentDate,
-      changeFrequency: SITEMAP_CHANGE_FREQUENCY.page,
-      priority: SITEMAP_PRIORITY.page,
+      changeFrequency: 'yearly' as const, // Auth pages rarely change
+      priority: 0.5, // Lower priority for auth pages
     },
     {
-      url: generateURL('/features'),
+      url: generateURL('/signup'),
       lastModified: currentDate,
-      changeFrequency: SITEMAP_CHANGE_FREQUENCY.page,
-      priority: SITEMAP_PRIORITY.page,
-    },
-    {
-      url: generateURL('/pricing'),
-      lastModified: currentDate,
-      changeFrequency: SITEMAP_CHANGE_FREQUENCY.page,
-      priority: SITEMAP_PRIORITY.page,
-    },
-    {
-      url: generateURL('/contact'),
-      lastModified: currentDate,
-      changeFrequency: SITEMAP_CHANGE_FREQUENCY.page,
-      priority: SITEMAP_PRIORITY.page,
-    },
-    {
-      url: generateURL('/privacy'),
-      lastModified: currentDate,
-      changeFrequency: SITEMAP_CHANGE_FREQUENCY.legal,
-      priority: SITEMAP_PRIORITY.legal,
-    },
-    {
-      url: generateURL('/terms'),
-      lastModified: currentDate,
-      changeFrequency: SITEMAP_CHANGE_FREQUENCY.legal,
-      priority: SITEMAP_PRIORITY.legal,
+      changeFrequency: 'yearly' as const, // Auth pages rarely change
+      priority: 0.5, // Lower priority for auth pages
     },
   ];
 
-  // If you have dynamic routes (e.g., blog posts), you can fetch them here
+  // If you have dynamic routes (e.g., blog posts, user profiles), you can fetch them here
   // const dynamicRoutes = await fetchDynamicRoutes();
 
   // For now, we'll just return static routes

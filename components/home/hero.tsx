@@ -1,5 +1,6 @@
-import { ArrowDownRight, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -73,10 +74,11 @@ const Hero = () => {
             </div>
           </div>
           <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
-            <Button className="w-full sm:w-auto">Sign Up</Button>
-            <Button variant="outline" className="w-full sm:w-auto">
-              Get Started
-              <ArrowDownRight className="ml-2 size-4" />
+            <Button className="w-full sm:w-auto" asChild>
+              <Link href="/signup">
+                Get Started
+                <ArrowRight className="ml-2 size-4" />
+              </Link>
             </Button>
           </div>
         </div>

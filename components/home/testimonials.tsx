@@ -73,7 +73,7 @@ const Testimonial = () => {
                 className="basis-full md:basis-1/2 lg:basis-1/3"
               >
                 <div className="h-full p-1">
-                  <div className="flex h-full flex-col justify-between rounded-lg border p-6">
+                  <div className="flex h-full flex-col justify-between rounded-lg border p-6 bg-muted">
                     <q className="text-foreground/70 leading-7">
                       {testimonial.content}
                     </q>

@@ -64,8 +64,8 @@ const Navbar = () => {
   ];
 
   return (
-    <section className="w-full border-b">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+    <section className="sticky top-0 z-50 w-full bg-background">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
         <nav className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -132,11 +132,11 @@ const Navbar = () => {
           </NavigationMenu>
           <div className="hidden items-center gap-4 lg:flex">
             <ThemeToggle />
-            <Button variant="outline" asChild>
-              <Link href="/sign-in">Sign in</Link>
+            <Button variant="link" className="hover:no-underline" asChild>
+              <Link href="/login">Sign in</Link>
             </Button>
             <Button asChild>
-              <Link href="/sign-up">Start for free</Link>
+              <Link href="/signup">Start for free</Link>
             </Button>
           </div>
           <div className="flex items-center gap-2 lg:hidden">
@@ -173,12 +173,12 @@ const Navbar = () => {
                     <AccordionContent>
                       <div className="grid md:grid-cols-2">
                         {features.map((feature, index) => (
-                          <a
+                          <Link
                             href={feature.href}
                             key={index}
-                            className="hover:bg-muted/70 rounded-md p-3 transition-colors"
+                            className="hover:bg-muted/70 rounded-md p-3 transition-colors block"
                           >
-                            <div key={feature.title}>
+                            <div>
                               <p className="text-foreground mb-1 font-semibold">
                                 {feature.title}
                               </p>
@@ -186,29 +186,29 @@ const Navbar = () => {
                                 {feature.description}
                               </p>
                             </div>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
                 <div className="flex flex-col gap-6">
-                  <a href="#" className="font-medium">
+                  <Link href="#" className="font-medium">
                     Templates
-                  </a>
-                  <a href="#" className="font-medium">
+                  </Link>
+                  <Link href="#" className="font-medium">
                     Blog
-                  </a>
-                  <a href="#" className="font-medium">
+                  </Link>
+                  <Link href="#" className="font-medium">
                     Pricing
-                  </a>
+                  </Link>
                 </div>
                 <div className="mt-6 flex flex-col gap-4">
                   <Button variant="outline" asChild>
-                    <Link href="/sign-in">Sign in</Link>
+                    <Link href="/login">Sign in</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/sign-up">Start for free</Link>
+                    <Link href="/signup">Start for free</Link>
                   </Button>
                 </div>
               </div>
