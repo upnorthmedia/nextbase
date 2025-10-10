@@ -34,16 +34,17 @@ export function LoginClient({
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
 
-  // Display message or error from URL params (e.g., after email verification)
+  // Display error from URL params
   useEffect(() => {
-    if (message) {
-      toast.success(message)
-      // Clean up URL to remove the message param
-      router.replace('/login')
-    }
+    // Only handle errors now, since email verification redirects to dashboard
     if (error) {
       toast.error(error)
       // Clean up URL to remove the error param
+      router.replace('/login')
+    }
+    // Messages are now handled on the dashboard for verified users
+    if (message && !message.includes('verified')) {
+      toast.info(message)
       router.replace('/login')
     }
   }, [message, error, router])

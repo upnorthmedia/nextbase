@@ -56,12 +56,13 @@ export async function GET(request: Request) {
     })
 
     if (!error) {
-      // Email verified successfully - redirect to login with success message
-      // We don't auto-login for security best practices
+      // Email verified successfully
+      // Note: Supabase automatically creates a session after email verification
       if (type === 'signup' || type === 'email') {
-        const loginUrl = new URL('/login', origin)
-        loginUrl.searchParams.set('message', 'Email verified successfully! Please log in to continue.')
-        return NextResponse.redirect(loginUrl)
+        // Redirect to dashboard since Supabase auto-logs in the user
+        const dashboardUrl = new URL('/dashboard', origin)
+        dashboardUrl.searchParams.set('message', 'Email verified successfully! Welcome to your dashboard.')
+        return NextResponse.redirect(dashboardUrl)
       }
 
       // For password recovery or email change, redirect to the next URL

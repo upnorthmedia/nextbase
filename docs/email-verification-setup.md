@@ -1,25 +1,40 @@
 # Email Verification Setup Guide
 
 ## Overview
-This guide explains how to configure email verification for your Supabase project following security best practices.
+This guide explains how to configure email verification for your Supabase project using Supabase's default authentication flow.
 
-## Security Best Practices Implementation
+## Authentication Flow (Supabase Default)
 
-### Why No Auto-Login After Email Verification?
+Supabase automatically creates a session after successful email verification for better user experience. This is their recommended approach for most consumer applications.
 
-1. **Security**: Email links can be prefetched by email clients or security scanners, potentially creating unwanted sessions
-2. **Explicit Authentication**: Users should consciously log in after verification
-3. **Audit Trail**: Separate events for email verification and login provide better tracking
-4. **Industry Standard**: Most secure applications separate email verification from authentication
-
-## Authentication Flow
+### Current Flow
 
 1. User signs up with email and password
 2. Confirmation email is sent
 3. User clicks the verification link
-4. Email is verified and user is redirected to `/login` with success message
-5. User explicitly logs in with their credentials
-6. User is authenticated and redirected to dashboard
+4. Email is verified and **session is automatically created**
+5. User is redirected directly to dashboard with welcome message
+6. No additional login step required
+
+### Design Decision
+
+We've chosen to accept Supabase's default behavior because:
+- **Better UX**: Users don't need to log in twice (after signup and after email verification)
+- **Supabase Standard**: This is how Supabase is designed to work
+- **Consumer-Friendly**: Most consumer apps prefer this smoother experience
+- **Email Security**: Clicking the email link is considered sufficient proof of email ownership
+
+### Security Considerations
+
+While auto-login after email verification has some theoretical security implications (email prefetching), Supabase considers these acceptable trade-offs:
+- Email link tokens are single-use
+- Tokens expire after a configured time
+- The convenience benefit outweighs the minimal security risk for most applications
+
+For applications requiring stricter security:
+- Consider implementing 2FA after email verification
+- Add additional verification steps for sensitive operations
+- Monitor for suspicious login patterns
 
 ## Supabase Dashboard Configuration
 

@@ -1,21 +1,36 @@
+"use client";
+
 import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
 const Hero = () => {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Default to light theme image during SSR
+  const heroImage = mounted && theme === "dark" ? "/hero-img-dark.png" : "/hero-img.png";
+
   return (
-    <section className="py-22">
+    <section className="pb-22 pt-10">
       <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
         <div className="bg-muted flex justify-end">
           <Image
-            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg"
+            src={heroImage}
             alt="placeholder hero"
-            width={800}
-            height={600}
-            className="max-h-[600px] w-full rounded-md object-cover lg:max-h-[800px]"
+            width={1100}
+            height={1100}
+            className="max-h-[400px] w-full rounded-md lg:max-h-[600px]"
           />
         </div>
         <div className="flex flex-col items-center text-center lg:max-w-3xl lg:items-start lg:text-left">

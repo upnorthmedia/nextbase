@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { signOut } from '@/app/auth/actions'
 import { Button } from '@/components/ui/button'
+import { WelcomeMessage } from '@/components/dashboard/welcome-message'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -13,7 +14,8 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-32">
+      <WelcomeMessage />
       <div className="max-w-2xl mx-auto space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
