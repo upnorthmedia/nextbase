@@ -65,8 +65,14 @@ export async function GET(request: Request) {
         return NextResponse.redirect(dashboardUrl)
       }
 
-      // For password recovery or email change, redirect to the next URL
-      if (type === 'recovery' || type === 'email_change') {
+      // For password recovery, always redirect to reset-password page
+      if (type === 'recovery') {
+        const redirectUrl = new URL('/reset-password', origin)
+        return NextResponse.redirect(redirectUrl)
+      }
+
+      // For email change, redirect to the next URL
+      if (type === 'email_change') {
         const redirectUrl = new URL(next, origin)
         return NextResponse.redirect(redirectUrl)
       }
