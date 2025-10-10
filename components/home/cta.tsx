@@ -1,36 +1,62 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
-const Cta = () => {
+interface CtaProps {
+  heading: string;
+  description: string;
+  buttons?: {
+    primary?: {
+      text: string;
+      url: string;
+    };
+    secondary?: {
+      text: string;
+      url: string;
+    };
+  };
+}
+
+const Cta = ({
+  heading = "Call to Action",
+  description = "Build faster with our collection of pre-built blocks. Speed up your development and ship features in record time.",
+  buttons = {
+    primary: {
+      text: "Buy Now",
+      url: "https://www.shadcnblocks.com",
+    },
+    secondary: {
+      text: "Contact Us",
+      url: "https://www.shadcnblocks.com",
+    },
+  },
+}: CtaProps) => {
   return (
     <section className="py-22">
       <div className="container">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-20 overflow-hidden rounded-2xl border bg-[radial-gradient(ellipse_30%_60%_at_100%_80%,var(--color-gray-200),transparent)] pt-20 sm:pl-16 lg:flex-row lg:bg-[radial-gradient(ellipse_50%_80%_at_40%_120%,var(--color-gray-200),transparent)] lg:pl-20">
-          <div className="lg:texlf mx-auto max-w-md px-4 text-center md:px-0 lg:mx-0 lg:pb-20 lg:text-left">
-            <p className="mb-6 font-medium">Ready to get started?</p>
-            <h2 className="mb-6 text-4xl font-bold md:text-5xl">
-              Start your free trial today.
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Start with a 14-day free trial. No credit card required. No setup
-              fees. Cancel anytime.
+        <div className="bg-accent rounded-lg p-8 md:rounded-xl lg:p-12">
+          <div className="mx-auto max-w-4xl text-center">
+            <h3 className="mb-4 text-3xl font-semibold md:text-5xl lg:mb-6 lg:text-6xl">
+              {heading}
+            </h3>
+            <p className="text-muted-foreground mb-8 text-lg font-medium lg:text-xl">
+              {description}
             </p>
-            <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
-              <Button>Get Started</Button>
-              <Button variant="outline">Learn More</Button>
+            <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+              {buttons.primary && (
+                <Button size="lg" className="w-full sm:w-auto" asChild>
+                  <a href={buttons.primary.url}>{buttons.primary.text}</a>
+                </Button>
+              )}
+              {buttons.secondary && (
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  asChild
+                >
+                  <a href={buttons.secondary.url}>{buttons.secondary.text}</a>
+                </Button>
+              )}
             </div>
-          </div>
-          <div className="relative w-full pl-4 sm:pl-0">
-            <div className="absolute -bottom-8 -left-8 -z-10 h-4/5 w-4/5 rounded-br-2xl rounded-tl-2xl bg-stone-900/20 blur-2xl"></div>
-            <Image
-              src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/pawel-czerwinski-O4fAgtXLRwI-unsplash.jpg"
-              alt="placeholder"
-              fill
-              className="relative z-10 h-full max-h-[400px] w-full rounded-br-2xl rounded-tl-2xl object-cover"
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
           </div>
         </div>
       </div>

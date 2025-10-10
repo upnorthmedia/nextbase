@@ -39,7 +39,7 @@ export default function Home() {
       <Hero />
       <Features />
       <Testimonial />
-      <Cta />
+      <Cta heading="Get Started Today" description="Sign up now to experience all the features we offer." />
     </>
   )
 }
