@@ -77,7 +77,7 @@ export function SignupClient({
 
           {showSuccess ? (
             // Success state - Check email message
-            <div className="min-w-sm flex w-full max-w-sm flex-col items-center gap-y-6 rounded-lg border px-6 py-12">
+            <div className="min-w-sm flex w-full max-w-sm flex-col bg-muted items-center gap-y-6 rounded-lg border px-6 py-12">
               <div className="flex flex-col items-center gap-4 text-center">
                 <div className="rounded-full bg-green-100 dark:bg-green-900/20 p-3">
                   <CheckCircle2 className="h-8 w-8 text-green-600 dark:text-green-400" />
@@ -114,7 +114,7 @@ export function SignupClient({
             </div>
           ) : (
             // Sign up form
-            <div className="min-w-sm flex w-full max-w-sm flex-col items-center gap-y-4 rounded-lg border px-6 py-12">
+            <div className="min-w-sm flex w-full max-w-sm bg-muted flex-col items-center gap-y-4 rounded-lg border px-6 py-12">
               <form action={signInWithGoogle} className="w-full">
                 <Button type="submit" variant="outline" className="w-full" disabled={isPending}>
                   <FcGoogle className="mr-2 size-5" />

@@ -88,7 +88,7 @@ export function LoginClient({
           <span className="text-lg font-semibold tracking-tighter">
             Nextbase
           </span>
-          <div className="min-w-sm flex w-full max-w-sm flex-col items-center gap-y-4 rounded-lg border px-6 py-12">
+          <div className="min-w-sm flex w-full max-w-sm bg-muted flex-col items-center gap-y-4 rounded-lg border px-6 py-12">
             <form action={signInWithGoogle} className="w-full">
               <Button type="submit" variant="outline" className="w-full" disabled={isPending}>
                 <FcGoogle className="mr-2 size-5" />
