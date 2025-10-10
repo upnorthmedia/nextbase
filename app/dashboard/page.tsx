@@ -1,7 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
-import { signOut } from '@/app/auth/actions'
-import { Button } from '@/components/ui/button'
+import { SignOutButton } from '@/components/auth/signout-button'
 import { WelcomeMessage } from '@/components/dashboard/welcome-message'
 
 export default async function DashboardPage() {
@@ -54,11 +53,7 @@ export default async function DashboardPage() {
           <h2 className="text-lg font-semibold">Quick Actions</h2>
 
           <div className="flex gap-4">
-            <form action={signOut}>
-              <Button type="submit">
-                Sign Out
-              </Button>
-            </form>
+            <SignOutButton />
           </div>
         </div>
       </div>

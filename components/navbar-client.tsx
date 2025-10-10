@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { User } from "@supabase/supabase-js";
-import { signOut } from "@/app/auth/actions";
+import { SignOutButton } from "@/components/auth/signout-button";
 
 import {
   Accordion,
@@ -176,10 +176,14 @@ export function NavbarClient({ user }: NavbarClientProps) {
                     <Link href="/settings">Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <form action={signOut}>
-                      <button className="w-full text-left">Sign out</button>
-                    </form>
+                  <DropdownMenuItem className="p-0">
+                    <SignOutButton
+                      variant="ghost"
+                      size="sm"
+                      className="w-full justify-start h-auto py-1.5 px-2 font-normal"
+                    >
+                      Sign out
+                    </SignOutButton>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -268,11 +272,7 @@ export function NavbarClient({ user }: NavbarClientProps) {
                       <Button variant="outline" asChild>
                         <Link href="/dashboard">Dashboard</Link>
                       </Button>
-                      <form action={signOut}>
-                        <Button type="submit" variant="outline" className="w-full">
-                          Sign out
-                        </Button>
-                      </form>
+                      <SignOutButton variant="outline" className="w-full" />
                     </>
                   ) : (
                     <>
