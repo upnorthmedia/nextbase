@@ -106,7 +106,7 @@ export function SignupClient({
                 </p>
 
                 <Link href="/login" className="w-full">
-                  <Button variant="outline" className="w-full">
+                  <Button className="w-full">
                     Back to Login
                   </Button>
                 </Link>
@@ -155,7 +155,7 @@ export function SignupClient({
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Password (min. 6 characters)"
+                    placeholder="Password"
                     className="bg-background text-sm"
                     autoComplete="new-password"
                     minLength={6}
@@ -177,7 +177,7 @@ export function SignupClient({
                     disabled={isPending}
                   />
                 </div>
-                <Button type="submit" className="w-full" variant="secondary" disabled={isPending}>
+                <Button type="submit" className="w-full" disabled={isPending}>
                   {isPending ? "Creating account..." : buttonText}
                 </Button>
               </form>

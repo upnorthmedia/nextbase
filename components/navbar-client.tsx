@@ -79,7 +79,7 @@ export function NavbarClient({ user }: NavbarClientProps) {
   ];
 
   return (
-    <section className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <section className="sticky top-0 z-50 w-full bg-background">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
         <nav className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">

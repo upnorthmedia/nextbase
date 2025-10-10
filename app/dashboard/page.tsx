@@ -55,7 +55,7 @@ export default async function DashboardPage() {
 
           <div className="flex gap-4">
             <form action={signOut}>
-              <Button type="submit" variant="outline">
+              <Button type="submit">
                 Sign Out
               </Button>
             </form>

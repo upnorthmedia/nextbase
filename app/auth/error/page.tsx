@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-export default function AuthErrorPage({
+export default async function AuthErrorPage({
   searchParams,
 }: {
-  searchParams: { error?: string; description?: string }
+  searchParams: Promise<{ error?: string; description?: string }>
 }) {
-  const error = searchParams.error
-  const description = searchParams.description
+  const params = await searchParams
+  const error = params.error
+  const description = params.description
 
   const getErrorMessage = () => {
     if (description) return description

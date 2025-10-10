@@ -1,9 +1,10 @@
 import { LoginClient } from "@/components/auth/login-client";
 
-export default function LoginPage({
+export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: { message?: string; error?: string };
+  searchParams: Promise<{ message?: string; error?: string }>;
 }) {
-  return <LoginClient message={searchParams.message} error={searchParams.error} />;
+  const params = await searchParams;
+  return <LoginClient message={params.message} error={params.error} />;
 }
