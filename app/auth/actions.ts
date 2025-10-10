@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { getSiteURL } from '@/lib/utils/site-url'
 
 export async function login(formData: FormData) {
   const supabase = await createClient()
@@ -74,11 +75,12 @@ export async function signOut() {
 
 export async function signInWithGoogle() {
   const supabase = await createClient()
+  const siteURL = getSiteURL()
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/confirm`,
+      redirectTo: `${siteURL}/auth/confirm`,
       queryParams: {
         access_type: 'offline',
         prompt: 'consent',
@@ -97,11 +99,12 @@ export async function signInWithGoogle() {
 
 export async function signInWithGitHub() {
   const supabase = await createClient()
+  const siteURL = getSiteURL()
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'github',
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/confirm`,
+      redirectTo: `${siteURL}/auth/confirm`,
     },
   })
 
@@ -117,9 +120,10 @@ export async function signInWithGitHub() {
 export async function resetPassword(formData: FormData) {
   const supabase = await createClient()
   const email = formData.get('email') as string
+  const siteURL = getSiteURL()
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/reset-password`,
+    redirectTo: `${siteURL}/auth/reset-password`,
   })
 
   if (error) {
