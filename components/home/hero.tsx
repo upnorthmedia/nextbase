@@ -74,10 +74,10 @@ const Hero = () => {
             </div>
           </div>
           <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
-            <Button className="w-full sm:w-auto" asChild>
+            <Button size="lg" className="w-full text-lg px-8 py-6 sm:w-auto" asChild>
               <Link href="/signup">
                 Get Started
-                <ArrowRight className="ml-2 size-4" />
+                <ArrowRight className="ml-2 size-5" />
               </Link>
             </Button>
           </div>

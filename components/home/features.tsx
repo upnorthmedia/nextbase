@@ -79,7 +79,7 @@ const Features = () => {
               <AnimatePresence mode="wait" initial={false}>
                 {hoveredIndex === idx && (
                   <motion.span
-                    className="bg-muted-foreground/20 absolute inset-0 block h-full w-full rounded-2xl"
+                    className="bg-black absolute inset-0 block h-full w-full rounded-2xl"
                     layoutId="hoverBackground"
                     key={idx}
                     initial={{ opacity: 0 }}
