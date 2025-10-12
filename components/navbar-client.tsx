@@ -129,10 +129,10 @@ export function NavbarClient({ user }: NavbarClientProps) {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink
-                  href="#"
+                  href="/blog"
                   className={navigationMenuTriggerStyle()}
                 >
-                  Resources
+                  Blog
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>

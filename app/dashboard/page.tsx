@@ -3,7 +3,11 @@ import { redirect } from 'next/navigation'
 import { SignOutButton } from '@/components/auth/signout-button'
 import { WelcomeMessage } from '@/components/dashboard/welcome-message'
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>
+}) {
   const supabase = await createClient()
 
   const { data: { user } } = await supabase.auth.getUser()
@@ -12,9 +16,23 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
+  const params = await searchParams
+  const error = params.error
+
   return (
     <div className="container mx-auto py-32">
       <WelcomeMessage />
+
+      {error === 'unauthorized' && (
+        <div className="max-w-2xl mx-auto mb-6">
+          <div className="rounded-lg border border-red-200 bg-red-50 dark:bg-red-950 dark:border-red-800 p-4">
+            <p className="text-sm text-red-800 dark:text-red-200">
+              <strong>Access Denied:</strong> You don&apos;t have permission to access the admin dashboard.
+              Please contact an administrator if you need access.
+            </p>
+          </div>
+        </div>
+      )}
       <div className="max-w-2xl mx-auto space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>

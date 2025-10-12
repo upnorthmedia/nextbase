@@ -43,7 +43,7 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser()
 
   // Protect routes that require authentication
-  const protectedRoutes = ['/dashboard', '/account', '/settings']
+  const protectedRoutes = ['/dashboard', '/account', '/settings', '/admin']
   const authRoutes = ['/login', '/signup', '/auth']
   const isProtectedRoute = protectedRoutes.some(route => request.nextUrl.pathname.startsWith(route))
   const isAuthRoute = authRoutes.some(route => request.nextUrl.pathname.startsWith(route))
@@ -61,6 +61,23 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard'
     return NextResponse.redirect(url)
+  }
+
+  // Check admin routes - require admin or editor role
+  if (user && request.nextUrl.pathname.startsWith('/admin')) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    // If user doesn't have admin or editor role, redirect to dashboard with error
+    if (!profile || (profile.role !== 'admin' && profile.role !== 'editor')) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/dashboard'
+      url.searchParams.set('error', 'unauthorized')
+      return NextResponse.redirect(url)
+    }
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
