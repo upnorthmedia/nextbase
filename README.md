@@ -1,4 +1,4 @@
-# NextBase Setup Guide
+# NextBase - 100% Open Source NextJS + Supabase Boiler Plate
 
 ## 📖 Overview
 
@@ -17,7 +17,7 @@ Built on **Next.js 15** with the App Router, NextBase provides everything you ne
 
 Whether you're building a SaaS product, a blog, a marketing site, or a full-stack application, NextBase gives you a solid foundation to build on.
 
----
+
 
 ## 🛠️ Tech Stack
 
@@ -55,7 +55,7 @@ Whether you're building a SaaS product, a blog, a marketing site, or a full-stac
 - **[Vercel](https://vercel.com/)** - Optimized for Next.js deployment (recommended)
 - **Edge-Ready** - Works on any platform supporting Next.js
 
----
+
 
 ## 📋 What's Included
 
@@ -69,9 +69,9 @@ NextBase comes with a complete, production-ready setup:
 - ✅ **Dark Mode** - Beautiful theme system with Tailwind CSS 4
 - ✅ **Zero Hardcoded Values** - Everything configurable via environment variables
 
----
 
-## 🚀 Quick Start
+
+## 🚀 Setup Guide
 
 ### Prerequisites
 
@@ -89,7 +89,7 @@ NextBase comes with a complete, production-ready setup:
 
 Time estimate: **10-15 minutes**
 
----
+
 
 ## 1️⃣ Supabase Project Setup
 
@@ -117,7 +117,7 @@ Once your project is ready:
 
 > 💡 **Tip**: Keep this tab open - you'll reference it during setup
 
----
+
 
 ## 2️⃣ Database Setup
 
@@ -197,7 +197,7 @@ If you've been using the old multi-file migration system:
 
 > 💡 **Note**: The consolidated migration (`00000000000000_complete_schema.sql`) is designed for **fresh Supabase projects**. If you've already run the individual migrations, you don't need to run this one.
 
----
+
 
 ## 3️⃣ Authentication Configuration
 
@@ -224,7 +224,7 @@ Supabase sends emails for signup confirmations and password resets. Customize th
 
 > 📝 **Note**: When deploying to production, add your production URLs here too!
 
----
+
 
 ## 4️⃣ OAuth Setup (Optional)
 
@@ -257,7 +257,7 @@ Want to enable "Sign in with Google"? Here's how:
 
 ✅ Google OAuth is now enabled!
 
----
+
 
 ## 5️⃣ Environment Variables
 
@@ -315,7 +315,7 @@ NextBase automatically configures:
 
 **No hardcoded values!** Just set your `.env.local` and everything works.
 
----
+
 
 ## 6️⃣ Install & Run
 
@@ -335,7 +335,7 @@ pnpm dev
 
 Your app should now be running at [http://localhost:3000](http://localhost:3000) 🎉
 
----
+
 
 ## 7️⃣ Post-Setup Tasks
 
@@ -391,7 +391,7 @@ WHERE id = (
 4. Click **"Save"**
 5. Visit `/blog` to see your post!
 
----
+
 
 ## 8️⃣ Troubleshooting
 
@@ -453,7 +453,7 @@ pnpm supabase gen types typescript --linked > lib/supabase/database.types.ts
 3. Check that migrations ran successfully
 4. Clear `.next` folder: `rm -rf .next` and rebuild
 
----
+
 
 ## 🚀 Deployment
 
@@ -478,7 +478,7 @@ NextBase works on any platform that supports Next.js:
 - [Fly.io](https://fly.io/)
 - Self-hosted with Docker
 
----
+
 
 ## 📚 Next Steps
 
@@ -490,7 +490,7 @@ Now that you're set up, explore these features:
 - **Configure SEO**: Update metadata in `lib/seo/constants.ts`
 - **Add Features**: Build on top of the authentication and blog system
 
----
+
 
 ## 🆘 Need Help?
 
@@ -499,6 +499,6 @@ Now that you're set up, explore these features:
 - 💬 [Supabase Discord](https://discord.supabase.com/)
 - 🐛 [Report Issues](https://github.com/yourusername/nextbase/issues)
 
----
+
 
 **Happy Building! 🎉**
