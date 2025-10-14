@@ -1,5 +1,5 @@
 import React from "react";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -127,9 +127,20 @@ const Footer = ({
             ))}
           </div>
         </div>
-        <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
-          <p className="order-2 lg:order-1">{copyright}</p>
-          <ul className="order-1 flex flex-col gap-2 md:order-2 md:flex-row">
+        <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 py-8 text-xs font-medium md:flex-row md:items-center">
+          <p className="order-2 md:order-1">{copyright}</p>
+          <p className="order-1 flex items-center justify-center gap-1 md:order-2">
+            Made with <Heart className="h-3 w-3 fill-red-500 text-red-500" /> by{" "}
+            <a
+              href="https://upnorthmedia.co"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary underline"
+            >
+              Up North Media
+            </a>
+          </p>
+          <ul className="order-3 flex flex-col gap-2 md:flex-row">
             {legalLinks.map((link, idx) => (
               <li key={idx} className="hover:text-primary">
                 <a href={link.href}> {link.name}</a>
