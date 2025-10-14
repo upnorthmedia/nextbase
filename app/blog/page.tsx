@@ -86,10 +86,11 @@ async function BlogContent({ searchParams }: BlogPageProps) {
 
       {/* Blog Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
+        {posts.map((post, index) => (
           <BlogCard
             key={post.id}
             post={post}
+            featured={index === 0}
           />
         ))}
       </div>

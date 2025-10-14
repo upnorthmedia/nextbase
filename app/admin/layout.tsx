@@ -8,7 +8,8 @@ import {
   FolderOpen,
   Users,
   Settings,
-  ArrowLeft
+  ArrowLeft,
+  Shield
 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -27,7 +28,8 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
   }
 
   const navigation = [
-    { name: 'Dashboard', href: '/admin/blog', icon: LayoutDashboard },
+    { name: 'Admin Home', href: '/admin', icon: Shield },
+    { name: 'Blog Dashboard', href: '/admin/blog', icon: LayoutDashboard },
     { name: 'All Posts', href: '/admin/blog', icon: FileText },
     { name: 'Categories', href: '/admin/blog/categories', icon: FolderOpen },
     { name: 'Authors', href: '/admin/blog/authors', icon: Users },
@@ -47,7 +49,7 @@ export default async function AdminLayout({ children }: AdminLayoutProps) {
               Back to Site
             </Link>
             <div className="h-6 w-px bg-border" />
-            <h1 className="text-xl font-bold">Blog Admin</h1>
+            <h1 className="text-xl font-bold">Admin Panel</h1>
           </div>
 
           <div className="flex items-center gap-4">

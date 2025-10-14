@@ -56,14 +56,14 @@ export async function POST(request: NextRequest) {
         }
         // Revalidate blog listing pages
         revalidatePath('/blog');
-        // Revalidate all category pages (post might appear in multiple categories)
-        revalidatePath('/blog/category/[slug]', 'page');
+        // Revalidate all category/post pages (post might appear in multiple categories)
+        revalidatePath('/blog/[slug]', 'page');
         break;
 
       case 'category':
         if (slug) {
-          // Revalidate specific category page
-          revalidatePath(`/blog/category/${slug}`);
+          // Revalidate specific category page (now at /blog/slug)
+          revalidatePath(`/blog/${slug}`);
         }
         // Revalidate blog listing (category filter)
         revalidatePath('/blog');
@@ -73,14 +73,12 @@ export async function POST(request: NextRequest) {
         // Revalidate all blog pages (author info might appear anywhere)
         revalidatePath('/blog');
         revalidatePath('/blog/[slug]', 'page');
-        revalidatePath('/blog/category/[slug]', 'page');
         break;
 
       case 'all':
         // Nuclear option: revalidate everything
         revalidatePath('/blog', 'layout');
         revalidatePath('/blog/[slug]', 'page');
-        revalidatePath('/blog/category/[slug]', 'page');
         break;
 
       default:

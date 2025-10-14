@@ -23,8 +23,12 @@ export function SignOutButton({
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
 
-  const handleSignOut = async (e: React.FormEvent) => {
+  const handleSignOut = async (e: React.MouseEvent) => {
     e.preventDefault()
+    e.stopPropagation()
+
+    // Prevent multiple clicks
+    if (isPending) return
 
     startTransition(async () => {
       try {
@@ -32,11 +36,9 @@ export function SignOutButton({
 
         if (result.success) {
           toast.success(result.message || "Successfully signed out")
-          // Small delay to ensure the auth state is updated
-          setTimeout(() => {
-            router.push('/')
-            router.refresh()
-          }, 100)
+          // Navigate immediately after successful sign out
+          router.push('/')
+          router.refresh()
         } else {
           toast.error(result.error || "Failed to sign out")
         }
@@ -48,23 +50,21 @@ export function SignOutButton({
   }
 
   return (
-    <form onSubmit={handleSignOut}>
-      <Button
-        type="submit"
-        variant={variant}
-        size={size}
-        className={className}
-        disabled={isPending}
-      >
-        {isPending ? (
-          <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Signing out...
-          </>
-        ) : (
-          children
-        )}
-      </Button>
-    </form>
+    <Button
+      onClick={handleSignOut}
+      variant={variant}
+      size={size}
+      className={className}
+      disabled={isPending}
+    >
+      {isPending ? (
+        <>
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          Signing out...
+        </>
+      ) : (
+        children
+      )}
+    </Button>
   )
 }

@@ -9,46 +9,46 @@ import {
 
 const testimonials = [
   {
-    name: "John Doe",
-    role: "CEO & Founder",
+    name: "Sarah Chen",
+    role: "Full Stack Developer",
     avatar: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-1.webp",
     content:
-      "Lorem ipsum dolor sit, amet Odio, incidunt.  id ut omnis repellat. Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis.",
+      "This boilerplate saved me weeks of setup time. The authentication system is rock solid and the blog integration is seamless. I launched my SaaS in days, not months!",
   },
   {
-    name: "Jane Doe",
-    role: "CTO",
+    name: "Michael Rodriguez",
+    role: "Startup Founder",
     avatar: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp",
     content:
-      "Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis repellat. Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis repellat.",
+      "The admin dashboard is incredibly powerful. Managing blog content and monitoring user analytics has never been easier. Best investment for our MVP launch.",
   },
   {
-    name: "John Smith",
-    role: "COO",
+    name: "Emily Watson",
+    role: "Indie Hacker",
     avatar: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-3.webp",
     content:
-      "Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis repellat. Lorem ipsum dolor sit.",
+      "I've tried many Next.js starters, but this one stands out. The SEO optimization is top-notch and the Supabase integration just works. Highly recommended!",
   },
   {
-    name: "Jane Smith",
-    role: "Tech Lead",
+    name: "David Kim",
+    role: "Product Manager",
     avatar: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-4.webp",
     content:
-      "Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis repellat. incidunt. Ratione, ullam? Iusto id ut omnis repellat ratione.",
+      "Our team loves the clean code structure and TypeScript setup. The blog system helped us launch our content marketing strategy immediately. Worth every penny.",
   },
   {
-    name: "Richard Doe",
-    role: "Designer",
+    name: "Lisa Thompson",
+    role: "Frontend Developer",
     avatar: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-5.webp",
     content:
-      "Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis repellat.",
+      "The authentication flow with email verification and OAuth is production-ready. No bugs, no hassle. Just clone and customize for your brand.",
   },
   {
-    name: "Gordon Doe",
-    role: "Developer",
+    name: "James Park",
+    role: "Tech Lead",
     avatar: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-6.webp",
     content:
-      "Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis repellat. Lorem ipsum dolor sit, amet Odio, incidunt. Ratione, ullam? Iusto id ut omnis repellat.",
+      "Best Next.js boilerplate I've used. The dashboard, blog, and user management features are enterprise-grade. Saved our team countless hours of development.",
   },
 ];
 
@@ -59,7 +59,7 @@ const Testimonial = () => {
         <Carousel className="w-full">
           <div className="mb-8 flex justify-between px-1 lg:mb-12">
             <h2 className="text-2xl font-semibold lg:text-5xl">
-              Why Clients Love Us
+              What Developers Are Saying
             </h2>
             <div className="flex items-center space-x-2">
               <CarouselPrevious className="static translate-y-0" />

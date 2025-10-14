@@ -79,9 +79,9 @@ export function NavbarClient({ user }: NavbarClientProps) {
   ];
 
   return (
-    <section className="sticky top-0 z-50 w-full bg-background">
+    <section className="sticky top-0 z-50 w-full bg-background" suppressHydrationWarning>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
-        <nav className="flex items-center justify-between">
+        <nav className="flex items-center justify-between" suppressHydrationWarning>
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logo.png"
@@ -176,7 +176,7 @@ export function NavbarClient({ user }: NavbarClientProps) {
                     <Link href="/settings">Settings</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="p-0">
+                  <DropdownMenuItem className="p-0" onSelect={(e) => e.preventDefault()}>
                     <SignOutButton
                       variant="ghost"
                       size="sm"

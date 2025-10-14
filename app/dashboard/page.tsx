@@ -2,6 +2,9 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { SignOutButton } from '@/components/auth/signout-button'
 import { WelcomeMessage } from '@/components/dashboard/welcome-message'
+import Link from 'next/link'
+import { Shield } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 export default async function DashboardPage({
   searchParams,
@@ -15,6 +18,15 @@ export default async function DashboardPage({
   if (!user) {
     redirect('/login')
   }
+
+  // Fetch user's profile to check role
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  const isAdmin = profile?.role === 'admin' || profile?.role === 'editor'
 
   const params = await searchParams
   const error = params.error
@@ -70,7 +82,15 @@ export default async function DashboardPage({
         <div className="rounded-lg border p-6 space-y-4">
           <h2 className="text-lg font-semibold">Quick Actions</h2>
 
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
+            {isAdmin && (
+              <Button asChild variant="default">
+                <Link href="/admin" className="flex items-center gap-2">
+                  <Shield className="h-4 w-4" />
+                  Admin Panel
+                </Link>
+              </Button>
+            )}
             <SignOutButton />
           </div>
         </div>

@@ -1,16 +1,16 @@
 import { SiteConfig } from '@/types/seo';
 
 export const siteConfig: SiteConfig = {
-  name: 'NextBase',
-  description: 'A modern Next.js starter template with best practices, SEO optimization, and beautiful UI components.',
+  name: process.env.NEXT_PUBLIC_SITE_NAME || 'NextBase',
+  description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION || 'A modern Next.js starter template with best practices, SEO optimization, and beautiful UI components.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://nextbase.com',
   ogImage: '/og-image.svg', // TODO: Convert to PNG for better social media support
   links: {
-    twitter: '@nextbase',
-    github: 'https://github.com/nextbase',
-    linkedin: 'https://linkedin.com/company/nextbase',
+    twitter: process.env.NEXT_PUBLIC_TWITTER_HANDLE || '@nextbase',
+    github: process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/nextbase',
+    linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://linkedin.com/company/nextbase',
   },
-  creator: 'NextBase Team',
+  creator: process.env.NEXT_PUBLIC_CREATOR_NAME || 'NextBase Team',
   keywords: [
     'Next.js',
     'React',
@@ -29,8 +29,8 @@ export const DEFAULT_OG_IMAGE_WIDTH = 1200;
 export const DEFAULT_OG_IMAGE_HEIGHT = 630;
 
 // Social Media Handles
-export const TWITTER_HANDLE = '@nextbase';
-export const TWITTER_SITE = '@nextbase';
+export const TWITTER_HANDLE = process.env.NEXT_PUBLIC_TWITTER_HANDLE || '@nextbase';
+export const TWITTER_SITE = process.env.NEXT_PUBLIC_TWITTER_HANDLE || '@nextbase';
 
 // SEO Defaults
 export const DEFAULT_ROBOTS = 'index, follow';

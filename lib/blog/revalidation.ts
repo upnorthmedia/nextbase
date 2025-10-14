@@ -31,7 +31,7 @@ export async function revalidateBlogCache(options: RevalidationOptions): Promise
       case 'category':
         // Revalidate category page
         if (options.slug) {
-          revalidatePath(`/blog/category/${options.slug}`);
+          revalidatePath(`/blog/${options.slug}`);
         }
         // Also revalidate blog home
         revalidatePath('/blog');

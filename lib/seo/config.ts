@@ -94,12 +94,6 @@ export function generateDefaultMetadata(): Metadata {
     icons: {
       icon: '/favicon.ico',
       apple: '/apple-touch-icon.png',
-      other: {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        url: '/favicon-32x32.png',
-      },
     },
     manifest: '/manifest.json',
   };

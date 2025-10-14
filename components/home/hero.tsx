@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { TypingAnimation } from "@/components/ui/typing-animation"
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ const Hero = () => {
   return (
     <section className="pb-22 pt-10">
       <div className="container grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
-        <div className="bg-muted flex justify-end">
+        <div className="flex justify-end">
           <Image
             src={heroImage}
             alt="placeholder hero"
@@ -35,8 +36,16 @@ const Hero = () => {
         </div>
         <div className="flex flex-col items-center text-center lg:max-w-3xl lg:items-start lg:text-left">
           <h1 className="my-6 text-pretty text-4xl font-bold lg:text-6xl xl:text-7xl">
-            NextJS + Supabase Starter Kit
+            NextJS Boiler Plate w/
           </h1>
+          <div className="mb-4 min-h-[3rem] text-4xl font-bold lg:min-h-[4.5rem] lg:text-6xl xl:min-h-[5.25rem] xl:text-7xl">
+            <TypingAnimation
+              words={["Blog", "Auth", "SEO Optimized", "Open Source", "Free", "Admin Panel"]}
+              loop
+              startOnView={false}
+              className="leading-tight tracking-tight"
+            />
+          </div>
           <p className="text-muted-foreground mb-8 max-w-xl lg:text-xl">
             Finely crafted starter kit for NextJS, Typescript, TailwindCSS, ShadCN and Supabase.
             Everything you need to build your next project.

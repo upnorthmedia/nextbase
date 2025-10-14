@@ -18,11 +18,11 @@ export function CategoryFilter({
   className,
   showCount = true
 }: CategoryFilterProps) {
-  // Helper to create URL - use dedicated category pages for cleaner URLs
+  // Helper to create URL - use cleaner URLs without /category/ prefix
   const createCategoryURL = (categorySlug: string | null) => {
     if (categorySlug) {
-      // Use dedicated category page: /blog/category/slug
-      return `/blog/category/${categorySlug}`;
+      // Use cleaner category page: /blog/slug
+      return `/blog/${categorySlug}`;
     } else {
       // Return to main blog listing
       return '/blog';
@@ -80,7 +80,7 @@ export function CategoryChips({
 }: CategoryFilterProps) {
   const createCategoryURL = (categorySlug: string | null) => {
     if (categorySlug) {
-      return `/blog/category/${categorySlug}`;
+      return `/blog/${categorySlug}`;
     } else {
       return '/blog';
     }
@@ -130,7 +130,7 @@ export function CategoryDropdown({
 }: CategoryFilterProps) {
   const createCategoryURL = (categorySlug: string | null) => {
     if (categorySlug) {
-      return `/blog/category/${categorySlug}`;
+      return `/blog/${categorySlug}`;
     } else {
       return '/blog';
     }

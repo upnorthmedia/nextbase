@@ -40,6 +40,7 @@ export function BlogCard({ post, className, featured = false }: BlogCardProps) {
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
+            priority={featured}
           />
         </div>
       )}
@@ -52,7 +53,7 @@ export function BlogCard({ post, className, featured = false }: BlogCardProps) {
             {post.categories.map((cat) => (
               <Link
                 key={cat.category?.id}
-                href={`/blog/category/${cat.category?.slug}`}
+                href={`/blog/${cat.category?.slug}`}
                 className="relative z-20 inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary transition-colors hover:bg-primary/20"
                 onClick={(e) => e.stopPropagation()}
               >

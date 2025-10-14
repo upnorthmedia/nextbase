@@ -16,16 +16,16 @@ interface CtaProps {
 }
 
 const Cta = ({
-  heading = "Call to Action",
-  description = "Build faster with our collection of pre-built blocks. Speed up your development and ship features in record time.",
+  heading = "Ready to Build Your Next Project?",
+  description = "Launch faster with pre-built authentication, blog system, and admin dashboard. Start building what matters today.",
   buttons = {
     primary: {
-      text: "Get Started",
+      text: "Get Started Free",
       url: "/signup",
     },
     secondary: {
-      text: "Let's Talk",
-      url: "/contact",
+      text: "View Documentation",
+      url: "/blog",
     },
   },
 }: CtaProps) => {

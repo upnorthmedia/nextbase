@@ -18,39 +18,39 @@ const Features = () => {
 
   const items = [
     {
-      title: "Plug & Play",
+      title: "Authentication Ready",
       description:
-        "Ready to use components that work out of the box with no configuration ",
+        "Complete auth flow with email verification, OAuth (Google), and password recovery built-in",
       icon: Plug2,
     },
     {
-      title: "Customizable",
+      title: "Blog System",
       description:
-        "Fully customizable components with clean, maintainable code structure",
+        "SEO-optimized blog with categories, authors, and full content management",
       icon: CodeXml,
     },
     {
-      title: "Design Control",
+      title: "Admin Dashboard",
       description:
-        "Complete control over styling and animations with modern  patterns",
+        "Analytics and management interface for blog posts, users, and content",
       icon: Snowflake,
     },
     {
-      title: "Regular Updates",
+      title: "User Dashboard",
       description:
-        "Continuously updated with new features, improvements and fixes",
+        "Personalized user area with profile management and account settings",
       icon: Clock,
     },
     {
-      title: "Clean Code",
+      title: "Supabase Backend",
       description:
-        "Well-structured, readable code following industry best practices",
+        "Database, authentication, and storage fully integrated and configured",
       icon: BrushCleaning,
     },
     {
-      title: "Performance",
+      title: "SEO Optimized",
       description:
-        "Optimized for speed and efficiency without compromising functionality",
+        "Built-in metadata, structured data, sitemaps, and performance optimization",
       icon: Zap,
     },
   ];
@@ -59,13 +59,13 @@ const Features = () => {
     <section className="overflow-hidden py-22">
       <div className="container flex w-full flex-col items-center justify-center px-4">
         <p className="bg-muted rounded-full px-4 py-1 text-xs uppercase">
-          Examples
+          Features
         </p>
         <h2 className="relative z-20 py-2 text-center font-sans text-5xl font-semibold tracking-tighter md:py-7 lg:text-6xl">
-          The Ultimate Block Toolkit
+          Everything You Need to Launch Fast
         </h2>
         <p className="text-md text-muted-foreground mx-auto max-w-xl text-center lg:text-lg">
-          Perfectly balanced between performance and customization.
+          A complete Next.js boilerplate with authentication, blog, and admin dashboard ready to deploy.
         </p>
 
         <div className="relative mt-10 grid w-full max-w-4xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

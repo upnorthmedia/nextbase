@@ -1,5 +1,20 @@
 import type { NextConfig } from "next";
 
+// Extract Supabase project hostname from NEXT_PUBLIC_SUPABASE_URL
+function getSupabaseHostname(): string | null {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  if (!supabaseUrl) return null;
+
+  try {
+    const url = new URL(supabaseUrl);
+    return url.hostname;
+  } catch {
+    return null;
+  }
+}
+
+const supabaseHostname = getSupabaseHostname();
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -15,14 +30,22 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "dwcavdcrzliyqoavxuna.supabase.co",
-        pathname: "/storage/v1/object/public/blog-images/**",
+        hostname: "cdn.brandfetch.io",
+        pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "dwcavdcrzliyqoavxuna.supabase.co",
-        pathname: "/storage/v1/object/public/avatars/**",
-      }
+      // Dynamically add Supabase storage patterns if URL is configured
+      ...(supabaseHostname ? [
+        {
+          protocol: "https" as const,
+          hostname: supabaseHostname,
+          pathname: "/storage/v1/object/public/blog-images/**",
+        },
+        {
+          protocol: "https" as const,
+          hostname: supabaseHostname,
+          pathname: "/storage/v1/object/public/avatars/**",
+        },
+      ] : []),
     ],
   },
 };
