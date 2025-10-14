@@ -13,6 +13,8 @@
 **User:** `demo@nextbasebp.vercel.app`
 **Pass:** `Password123`
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/codyswain/nextbase&env=NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY&envDescription=Required%20environment%20variables%20for%20NextBase&envLink=https://github.com/codyswain/nextbase%23environment-variables&project-name=nextbase&repository-name=nextbase)
+
 Built on **Next.js 15** with the App Router, NextBase provides everything you need to start building your product:
 
 - **Complete Authentication Flow** - Secure email/password and OAuth (Google) authentication powered by Supabase Auth
@@ -467,6 +469,20 @@ pnpm supabase gen types typescript --linked > lib/supabase/database.types.ts
 ## 🚀 Deployment
 
 ### Vercel (Recommended)
+
+**Quick Deploy:**
+
+Click the button below to deploy your own copy of NextBase to Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/codyswain/nextbase&env=NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY&envDescription=Required%20environment%20variables%20for%20NextBase&envLink=https://github.com/codyswain/nextbase%23environment-variables&project-name=nextbase&repository-name=nextbase)
+
+This will:
+- Clone the repository to your GitHub account
+- Set up a new Vercel project
+- Prompt you to configure required environment variables
+- Deploy your application automatically
+
+**Manual Deployment:**
 
 1. Push your code to GitHub
 2. Go to [Vercel](https://vercel.com/)
