@@ -4,6 +4,8 @@
 
 **NextBase** is a modern, production-ready Next.js SaaS boilerplate designed to help you launch your web application in hours, not weeks. It combines the latest web technologies with best practices for authentication, content management, and scalability.
 
+![Next Base Screenshot](https://nextbasebp.vercel.app/screenshot1.png)
+
 Built on **Next.js 15** with the App Router, NextBase provides everything you need to start building your product:
 
 - **Complete Authentication Flow** - Secure email/password and OAuth (Google) authentication powered by Supabase Auth
