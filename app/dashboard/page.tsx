@@ -53,33 +53,7 @@ export default async function DashboardPage({
           </p>
         </div>
 
-        <div className="rounded-lg border p-6 space-y-4">
-          <h2 className="text-lg font-semibold">Account Information</h2>
-
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between py-2 border-b">
-              <span className="text-muted-foreground">Email</span>
-              <span>{user.email}</span>
-            </div>
-
-            <div className="flex justify-between py-2 border-b">
-              <span className="text-muted-foreground">User ID</span>
-              <span className="font-mono text-xs">{user.id}</span>
-            </div>
-
-            <div className="flex justify-between py-2 border-b">
-              <span className="text-muted-foreground">Created</span>
-              <span>{new Date(user.created_at).toLocaleDateString()}</span>
-            </div>
-
-            <div className="flex justify-between py-2 border-b">
-              <span className="text-muted-foreground">Last Sign In</span>
-              <span>{user.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleString() : 'N/A'}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="rounded-lg border p-6 space-y-4">
+        <div className="space-y-4">
           <h2 className="text-lg font-semibold">Quick Actions</h2>
 
           <div className="flex flex-wrap gap-4">
@@ -92,6 +66,27 @@ export default async function DashboardPage({
               </Button>
             )}
             <SignOutButton />
+          </div>
+        </div>
+
+        <div className="rounded-lg border p-6 space-y-4 bg-muted">
+          <h2 className="text-lg font-semibold">Account Information</h2>
+
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between py-2 border-b">
+              <span className="text-muted-foreground">Email</span>
+              <span>{user.email}</span>
+            </div>
+
+            <div className="flex justify-between py-2 border-b">
+              <span className="text-muted-foreground">Created</span>
+              <span>{new Date(user.created_at).toLocaleDateString()}</span>
+            </div>
+
+            <div className="flex justify-between py-2 border-b">
+              <span className="text-muted-foreground">Last Sign In</span>
+              <span>{user.last_sign_in_at ? new Date(user.last_sign_in_at).toLocaleString() : 'N/A'}</span>
+            </div>
           </div>
         </div>
       </div>
