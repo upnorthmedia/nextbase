@@ -42,8 +42,7 @@ export function SignOutButton({
         } else {
           toast.error(result.error || "Failed to sign out")
         }
-      } catch (error) {
-        console.error("Sign out error:", error)
+      } catch {
         toast.error("An unexpected error occurred while signing out")
       }
     })

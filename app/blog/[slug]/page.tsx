@@ -253,7 +253,7 @@ async function BlogPostPage({ params }: BlogSlugPageProps) {
   }
 
   // Increment view count (fire and forget)
-  incrementViewCount(post.id).catch(console.error);
+  incrementViewCount(post.id).catch(() => {});
 
   // Fetch related posts
   const relatedPosts = await getRelatedPosts(post.id, 3);

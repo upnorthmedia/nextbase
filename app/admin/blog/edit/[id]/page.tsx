@@ -72,8 +72,7 @@ export default function EditPostPage({ params }: EditPostPageProps) {
             : [],
           status: result.post.status,
         });
-      } catch (error) {
-        console.error('Error loading post:', error);
+      } catch {
         toast.error('Failed to load post');
         router.push('/admin/blog');
       } finally {
@@ -138,7 +137,6 @@ export default function EditPostPage({ params }: EditPostPageProps) {
       const validation = validateBlogPost(dataToValidate);
 
       if (!validation.success) {
-        console.error('Validation failed:', validation.error);
         const errors = getValidationErrors(validation.error);
         const firstError = Object.values(errors)[0];
         toast.error(firstError || 'Validation failed');
@@ -148,7 +146,6 @@ export default function EditPostPage({ params }: EditPostPageProps) {
       const result = await updateBlogPostAction(id, validation.data);
 
       if (!result.success) {
-        console.error('Update failed:', result.error);
         toast.error(result.error || 'Failed to update post');
         return;
       }
@@ -160,8 +157,7 @@ export default function EditPostPage({ params }: EditPostPageProps) {
       );
 
       router.refresh();
-    } catch (error) {
-      console.error('Error in handleSubmit:', error);
+    } catch {
       toast.error('Failed to save changes. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -187,8 +183,7 @@ export default function EditPostPage({ params }: EditPostPageProps) {
       toast.success('Post deleted successfully');
       router.push('/admin/blog');
       router.refresh();
-    } catch (error) {
-      console.error('Error deleting post:', error);
+    } catch {
       toast.error('Failed to delete post. Please try again.');
       setIsDeleting(false);
     }

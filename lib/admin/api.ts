@@ -55,7 +55,6 @@ export async function getUsersCount(): Promise<number> {
     .select('*', { count: 'exact', head: true });
 
   if (error) {
-    console.error('Error fetching users count:', error);
     throw error;
   }
 
@@ -74,7 +73,6 @@ export async function getAdminUsersCount(): Promise<number> {
     .eq('role', 'admin');
 
   if (error) {
-    console.error('Error fetching admin users count:', error);
     throw error;
   }
 
@@ -93,7 +91,6 @@ export async function getEditorUsersCount(): Promise<number> {
     .eq('role', 'editor');
 
   if (error) {
-    console.error('Error fetching editor users count:', error);
     throw error;
   }
 
@@ -113,7 +110,6 @@ export async function getUserRole(userId: string): Promise<'user' | 'admin' | 'e
     .single();
 
   if (error) {
-    console.error('Error fetching user role:', error);
     return null;
   }
 

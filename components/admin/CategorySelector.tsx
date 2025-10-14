@@ -32,8 +32,7 @@ export function CategorySelector({
         if (result.success) {
           setCategories(result.categories);
         }
-      } catch (error) {
-        console.error('Error loading categories:', error);
+      } catch {
       } finally {
         setIsLoading(false);
       }

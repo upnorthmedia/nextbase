@@ -52,7 +52,6 @@ export async function signup(formData: FormData) {
   })
 
   if (error) {
-    console.error('Signup error:', error)
     redirect(`/signup?error=${encodeURIComponent(error.message)}`)
   }
 

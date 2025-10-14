@@ -9,40 +9,20 @@ export async function getBlogPostAction(id: string) {
   try {
     const post = await getBlogPostById(id);
     return { success: true, post };
-  } catch (error) {
-    console.error('Error fetching post:', error);
+  } catch {
     return { success: false, error: 'Failed to fetch post' };
   }
 }
 
 export async function updateBlogPostAction(id: string, data: Partial<BlogPostFormData>) {
-  console.log('🟣 Server Action: updateBlogPostAction called');
-  console.log('🟣 ID:', id);
-  console.log('🟣 Data:', JSON.stringify(data, null, 2));
-
   try {
-    console.log('🟣 Calling updateBlogPost...');
     const post = await updateBlogPost(id, data);
-    console.log('🟢 updateBlogPost successful, post:', post);
 
     // Trigger revalidation
-    console.log('🟣 Calling revalidateAfterPostUpdate...');
     await revalidateAfterPostUpdate(post.slug);
-    console.log('🟢 Revalidation complete');
 
     return { success: true, post };
   } catch (error: unknown) {
-    console.error('❌ Error updating post in action - Full details:');
-    console.error('❌ Error object:', error);
-
-    if (error && typeof error === 'object') {
-      console.error('❌ Error message:', 'message' in error ? error.message : 'Unknown');
-      console.error('❌ Error code:', 'code' in error ? error.code : 'Unknown');
-      console.error('❌ Error details:', 'details' in error ? error.details : 'Unknown');
-      console.error('❌ Error hint:', 'hint' in error ? error.hint : 'Unknown');
-      console.error('❌ Error stack:', 'stack' in error ? error.stack : 'Unknown');
-      console.error('❌ Complete error JSON:', JSON.stringify(error, null, 2));
-    }
     const errorMessage = error && typeof error === 'object' && 'message' in error
       ? String(error.message)
       : 'Failed to update post';
@@ -85,8 +65,7 @@ export async function deleteBlogPostAction(id: string) {
     await revalidateAfterPostDelete();
 
     return { success: true };
-  } catch (error) {
-    console.error('Error deleting post:', error);
+  } catch {
     return { success: false, error: 'Failed to delete post' };
   }
 }

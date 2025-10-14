@@ -42,8 +42,7 @@ export default function AuthorsPage() {
       } else {
         toast.error('Failed to load authors');
       }
-    } catch (error) {
-      console.error('Error loading authors:', error);
+    } catch {
       toast.error('Failed to load authors');
     } finally {
       setIsLoading(false);
@@ -127,8 +126,7 @@ export default function AuthorsPage() {
 
       resetForm();
       await loadAuthors();
-    } catch (error) {
-      console.error('Error saving author:', error);
+    } catch {
       toast.error('Failed to save author. Please try again.');
     } finally {
       setIsSubmitting(false);

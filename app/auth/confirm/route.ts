@@ -12,7 +12,6 @@ export async function GET(request: Request) {
 
   // Handle OAuth errors (e.g., user cancelled the flow)
   if (error) {
-    console.error('OAuth error:', error, error_description)
     const errorUrl = new URL('/auth/error', origin)
     errorUrl.searchParams.set('error', error)
     if (error_description) {
@@ -29,7 +28,6 @@ export async function GET(request: Request) {
       const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
 
       if (exchangeError) {
-        console.error('Error exchanging code for session:', exchangeError)
         const errorUrl = new URL('/auth/error', origin)
         errorUrl.searchParams.set('error', 'session_exchange_failed')
         return NextResponse.redirect(errorUrl)
@@ -38,8 +36,7 @@ export async function GET(request: Request) {
       // Successfully authenticated with OAuth
       const redirectUrl = new URL(next, origin)
       return NextResponse.redirect(redirectUrl)
-    } catch (err) {
-      console.error('Unexpected error during OAuth callback:', err)
+    } catch {
       const errorUrl = new URL('/auth/error', origin)
       errorUrl.searchParams.set('error', 'unexpected_error')
       return NextResponse.redirect(errorUrl)
@@ -84,7 +81,6 @@ export async function GET(request: Request) {
       }
     } else {
       // Handle specific verification errors
-      console.error('Error verifying OTP:', error)
       const errorUrl = new URL('/auth/error', origin)
 
       if (error.message?.includes('expired')) {

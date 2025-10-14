@@ -105,8 +105,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
-  } catch (error) {
-    console.error('Revalidation error:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Revalidation failed' },
       { status: 500 }

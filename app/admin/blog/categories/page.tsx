@@ -35,8 +35,7 @@ export default function CategoriesPage() {
       } else {
         toast.error('Failed to load categories');
       }
-    } catch (error) {
-      console.error('Error loading categories:', error);
+    } catch {
       toast.error('Failed to load categories');
     } finally {
       setIsLoading(false);
@@ -107,8 +106,7 @@ export default function CategoriesPage() {
 
       resetForm();
       await loadCategories();
-    } catch (error) {
-      console.error('Error saving category:', error);
+    } catch {
       toast.error('Failed to save category. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -128,8 +126,7 @@ export default function CategoriesPage() {
       }
       toast.success('Category deleted successfully');
       await loadCategories();
-    } catch (error) {
-      console.error('Error deleting category:', error);
+    } catch {
       toast.error('Failed to delete category. It may be in use by posts.');
     }
   };

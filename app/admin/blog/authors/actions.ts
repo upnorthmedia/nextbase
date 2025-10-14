@@ -8,8 +8,7 @@ export async function getAuthorsAction() {
   try {
     const authors = await getAuthors();
     return { success: true, authors };
-  } catch (error) {
-    console.error('Error fetching authors:', error);
+  } catch {
     return { success: false, error: 'Failed to fetch authors', authors: [] };
   }
 }
@@ -19,8 +18,7 @@ export async function createAuthorAction(data: AuthorFormData) {
     const author = await createAuthor(data);
     await revalidateAfterAuthorChange();
     return { success: true, author };
-  } catch (error) {
-    console.error('Error creating author:', error);
+  } catch {
     return { success: false, error: 'Failed to create author' };
   }
 }
@@ -30,8 +28,7 @@ export async function updateAuthorAction(id: string, data: Partial<AuthorFormDat
     const author = await updateAuthor(id, data);
     await revalidateAfterAuthorChange();
     return { success: true, author };
-  } catch (error) {
-    console.error('Error updating author:', error);
+  } catch {
     return { success: false, error: 'Failed to update author' };
   }
 }

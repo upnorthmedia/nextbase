@@ -41,8 +41,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       try {
         const { data: { session } } = await supabase.auth.getSession()
         setUser(session?.user ?? null)
-      } catch (error) {
-        console.error('Error checking session:', error)
+      } catch {
         setUser(null)
       } finally {
         setLoading(false)
@@ -71,8 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(null)
       router.push('/')
       router.refresh()
-    } catch (error) {
-      console.error('Error signing out:', error)
+    } catch {
     }
   }
 

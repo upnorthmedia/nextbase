@@ -12,8 +12,7 @@ export async function createBlogPostAction(data: BlogPostFormData) {
     await revalidateAfterPostCreate(post.slug);
 
     return { success: true, post };
-  } catch (error) {
-    console.error('Error creating post:', error);
+  } catch {
     return { success: false, error: 'Failed to create post' };
   }
 }

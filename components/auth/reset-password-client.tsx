@@ -55,10 +55,9 @@ export function ResetPasswordClient({
           setPasswordError(result.error || "Failed to reset password");
           toast.error(result.error || "Failed to reset password");
         }
-      } catch (error) {
+      } catch {
         toast.dismiss(loadingToast);
         toast.error("An unexpected error occurred");
-        console.error('Reset password error:', error);
       }
     });
   }

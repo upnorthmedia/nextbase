@@ -52,9 +52,8 @@ export function SignupClient({
         } else {
           setError(result.error || "Error creating account")
         }
-      } catch (error) {
+      } catch {
         setError("An unexpected error occurred")
-        console.error('Signup error:', error)
       }
     })
   }

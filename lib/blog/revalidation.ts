@@ -57,8 +57,7 @@ export async function revalidateBlogCache(options: RevalidationOptions): Promise
     }
 
     return true;
-  } catch (error) {
-    console.error('Revalidation error:', error);
+  } catch {
     return false;
   }
 }

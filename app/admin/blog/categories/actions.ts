@@ -17,8 +17,7 @@ export async function getCategoriesAction() {
     }));
 
     return { success: true, categories: transformedCategories };
-  } catch (error) {
-    console.error('Error fetching categories:', error);
+  } catch {
     return { success: false, error: 'Failed to fetch categories', categories: [] };
   }
 }
@@ -28,8 +27,7 @@ export async function createCategoryAction(data: CategoryFormData) {
     const category = await createCategory(data);
     await revalidateAfterCategoryChange(category.slug);
     return { success: true, category };
-  } catch (error) {
-    console.error('Error creating category:', error);
+  } catch {
     return { success: false, error: 'Failed to create category' };
   }
 }
@@ -41,8 +39,7 @@ export async function updateCategoryAction(id: string, data: Partial<CategoryFor
       await revalidateAfterCategoryChange(data.slug);
     }
     return { success: true, category };
-  } catch (error) {
-    console.error('Error updating category:', error);
+  } catch {
     return { success: false, error: 'Failed to update category' };
   }
 }
@@ -52,8 +49,7 @@ export async function deleteCategoryAction(id: string) {
     await deleteCategory(id);
     await revalidateAfterCategoryDelete();
     return { success: true };
-  } catch (error) {
-    console.error('Error deleting category:', error);
+  } catch {
     return { success: false, error: 'Failed to delete category. It may be in use by posts.' };
   }
 }

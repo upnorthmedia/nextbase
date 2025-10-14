@@ -90,8 +90,7 @@ export function ImageUploader({
       setPreview(result.url);
       onUploadComplete(result.url!);
       toast.success('Image uploaded successfully!');
-    } catch (error) {
-      console.error('Upload error:', error);
+    } catch {
       toast.error('Failed to upload image');
     } finally {
       setIsUploading(false);

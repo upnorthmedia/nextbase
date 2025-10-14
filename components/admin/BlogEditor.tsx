@@ -41,8 +41,7 @@ export function BlogEditor({ value, onChange, className }: BlogEditorProps) {
             setPreview('<p class="text-red-500">Error processing markdown</p>');
           }
         }
-      } catch (error) {
-        console.error('Error processing markdown:', error);
+      } catch {
         if (!isCancelled) {
           setPreview('<p class="text-red-500">Error processing markdown</p>');
         }
@@ -97,8 +96,7 @@ export function BlogEditor({ value, onChange, className }: BlogEditorProps) {
       }
 
       toast.success('Image inserted successfully!');
-    } catch (error) {
-      console.error('Upload error:', error);
+    } catch {
       toast.error('Failed to upload image');
     } finally {
       setIsUploadingImage(false);

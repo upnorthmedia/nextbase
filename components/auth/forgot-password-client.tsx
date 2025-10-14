@@ -56,10 +56,9 @@ export function ForgotPasswordClient({
         } else {
           toast.error(result.error || "Failed to send reset email");
         }
-      } catch (error) {
+      } catch {
         toast.dismiss(loadingToast);
         toast.error("An unexpected error occurred");
-        console.error('Forgot password error:', error);
       }
     });
   }

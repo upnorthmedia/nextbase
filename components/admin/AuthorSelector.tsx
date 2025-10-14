@@ -33,8 +33,7 @@ export function AuthorSelector({
         if (result.success) {
           setAuthors(result.authors);
         }
-      } catch (error) {
-        console.error('Error loading authors:', error);
+      } catch {
       } finally {
         setIsLoading(false);
       }

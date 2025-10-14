@@ -65,10 +65,9 @@ export function LoginClient({
         } else {
           toast.error(result.error || "Invalid credentials")
         }
-      } catch (error) {
+      } catch {
         toast.dismiss(loadingToast)
         toast.error("An unexpected error occurred")
-        console.error('Login error:', error)
       }
     })
   }

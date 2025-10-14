@@ -87,8 +87,7 @@ export default function NewPostPage() {
 
       router.push(`/admin/blog/edit/${result.post?.id}`);
       router.refresh();
-    } catch (error) {
-      console.error('Error creating post:', error);
+    } catch {
       toast.error('Failed to save post. Please try again.');
     } finally {
       setIsSubmitting(false);

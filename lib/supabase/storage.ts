@@ -87,7 +87,6 @@ export async function uploadImage(
       });
 
     if (uploadError) {
-      console.error('Upload error:', uploadError);
       return { success: false, error: uploadError.message };
     }
 
@@ -102,7 +101,6 @@ export async function uploadImage(
       path: data.path,
     };
   } catch (error) {
-    console.error('Unexpected upload error:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Upload failed',
@@ -134,13 +132,11 @@ export async function deleteImage(path: string): Promise<DeleteImageResult> {
       .remove([path]);
 
     if (deleteError) {
-      console.error('Delete error:', deleteError);
       return { success: false, error: deleteError.message };
     }
 
     return { success: true };
   } catch (error) {
-    console.error('Unexpected delete error:', error);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Delete failed',

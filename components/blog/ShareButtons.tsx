@@ -30,14 +30,12 @@ export function ShareButtons({ url, title, description, className }: ShareButton
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+    } catch {
     }
   };
 
-  const handleShare = (platform: string) => {
+  const handleShare = () => {
     // Track analytics if needed
-    console.log(`Shared on ${platform}`);
   };
 
   return (
@@ -50,7 +48,7 @@ export function ShareButtons({ url, title, description, className }: ShareButton
         size="icon"
         className="h-9 w-9"
         onClick={() => {
-          handleShare('twitter');
+          handleShare();
           window.open(shareLinks.twitter, '_blank', 'noopener,noreferrer');
         }}
         title="Share on Twitter"
@@ -65,7 +63,7 @@ export function ShareButtons({ url, title, description, className }: ShareButton
         size="icon"
         className="h-9 w-9"
         onClick={() => {
-          handleShare('facebook');
+          handleShare();
           window.open(shareLinks.facebook, '_blank', 'noopener,noreferrer');
         }}
         title="Share on Facebook"
@@ -80,7 +78,7 @@ export function ShareButtons({ url, title, description, className }: ShareButton
         size="icon"
         className="h-9 w-9"
         onClick={() => {
-          handleShare('linkedin');
+          handleShare();
           window.open(shareLinks.linkedin, '_blank', 'noopener,noreferrer');
         }}
         title="Share on LinkedIn"
@@ -127,8 +125,7 @@ export function ShareButtonsVertical({ url, title, description, className }: Sha
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+    } catch {
     }
   };
 

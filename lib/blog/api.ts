@@ -112,7 +112,6 @@ export async function getBlogPosts(
   const { data: posts, count, error } = await query;
 
   if (error) {
-    console.error('Error fetching blog posts:', error);
     throw error;
   }
 
@@ -148,7 +147,6 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     if (error.code === 'PGRST116') {
       return null; // Post not found
     }
-    console.error('Error fetching blog post:', error);
     throw error;
   }
 
@@ -174,7 +172,6 @@ export async function getBlogPostById(id: string): Promise<BlogPost | null> {
     if (error.code === 'PGRST116') {
       return null;
     }
-    console.error('Error fetching blog post:', error);
     throw error;
   }
 
@@ -194,7 +191,6 @@ export async function createBlogPost(data: BlogPostFormData): Promise<BlogPost> 
     .single();
 
   if (postError) {
-    console.error('Error creating blog post:', postError);
     throw postError;
   }
 
@@ -210,7 +206,6 @@ export async function createBlogPost(data: BlogPostFormData): Promise<BlogPost> 
       .insert(categoryRelations);
 
     if (categoryError) {
-      console.error('Error adding categories:', categoryError);
       // Note: In production, you might want to delete the post here
       throw categoryError;
     }
@@ -224,54 +219,34 @@ export async function updateBlogPost(
   id: string,
   data: Partial<BlogPostFormData>
 ): Promise<BlogPost> {
-  console.log('🔴 updateBlogPost called with id:', id);
-  console.log('🔴 Data received:', JSON.stringify(data, null, 2));
-
   const supabase = await createClient();
 
   const { category_ids, ...postData } = data;
-  console.log('🔴 Category IDs:', category_ids);
-  console.log('🔴 Post data (without category_ids):', postData);
 
   // Update the post - don't select here to avoid RLS policy issues with auth.users
-  console.log('🔴 Updating blog_posts table...');
   const { error: postError } = await supabase
     .from('blog_posts')
     .update(postData)
     .eq('id', id);
 
   if (postError) {
-    console.error('❌ Error updating blog post - Full error object:');
-    console.error('❌ Error Code:', postError.code);
-    console.error('❌ Error Message:', postError.message);
-    console.error('❌ Error Details:', postError.details);
-    console.error('❌ Error Hint:', postError.hint);
-    console.error('❌ Complete Error:', JSON.stringify(postError, null, 2));
     throw postError;
   }
 
-  console.log('🟢 Post updated successfully');
-
   // Update categories if provided
   if (category_ids !== undefined) {
-    console.log('🔴 Updating categories...');
-
     // Delete existing categories
-    console.log('🔴 Deleting existing categories...');
     const { error: deleteError } = await supabase
       .from('blog_post_categories')
       .delete()
       .eq('blog_post_id', id);
 
     if (deleteError) {
-      console.error('❌ Error deleting categories:', deleteError);
-    } else {
-      console.log('🟢 Existing categories deleted');
+      throw deleteError;
     }
 
     // Add new categories
     if (category_ids.length > 0) {
-      console.log('🔴 Inserting new categories:', category_ids);
       const categoryRelations = category_ids.map(categoryId => ({
         blog_post_id: id,
         category_id: categoryId,
@@ -282,20 +257,12 @@ export async function updateBlogPost(
         .insert(categoryRelations);
 
       if (categoryError) {
-        console.error('❌ Error inserting categories:', categoryError);
         throw categoryError;
       }
-      console.log('🟢 Categories inserted successfully');
-    } else {
-      console.log('🔵 No categories to insert (empty array)');
     }
-  } else {
-    console.log('🔵 category_ids is undefined, skipping category update');
   }
 
-  console.log('🔴 Fetching updated post with relations...');
   const updatedPost = await getBlogPostById(id);
-  console.log('🟢 Final updated post:', updatedPost);
 
   if (!updatedPost) {
     throw new Error('Post not found after update');
@@ -313,7 +280,6 @@ export async function deleteBlogPost(id: string): Promise<void> {
     .eq('id', id);
 
   if (error) {
-    console.error('Error deleting blog post:', error);
     throw error;
   }
 }
@@ -326,8 +292,8 @@ export async function incrementViewCount(postId: string): Promise<void> {
     .rpc('increment_view_count', { post_id: postId });
 
   if (error) {
-    console.error('Error incrementing view count:', error);
     // Don't throw - view counting shouldn't break the page
+    return;
   }
 }
 
@@ -345,7 +311,6 @@ export async function getCategories(): Promise<Category[]> {
     .order('name', { ascending: true });
 
   if (error) {
-    console.error('Error fetching categories:', error);
     throw error;
   }
 
@@ -388,7 +353,6 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
     if (error.code === 'PGRST116') {
       return null;
     }
-    console.error('Error fetching category:', error);
     throw error;
   }
 
@@ -405,7 +369,6 @@ export async function createCategory(data: CategoryFormData): Promise<Category> 
     .single();
 
   if (error) {
-    console.error('Error creating category:', error);
     throw error;
   }
 
@@ -426,7 +389,6 @@ export async function updateCategory(
     .single();
 
   if (error) {
-    console.error('Error updating category:', error);
     throw error;
   }
 
@@ -442,7 +404,6 @@ export async function deleteCategory(id: string): Promise<void> {
     .eq('id', id);
 
   if (error) {
-    console.error('Error deleting category:', error);
     throw error;
   }
 }
@@ -458,7 +419,6 @@ export async function getAuthors(): Promise<Author[]> {
     .order('name', { ascending: true });
 
   if (error) {
-    console.error('Error fetching authors:', error);
     throw error;
   }
 
@@ -478,7 +438,6 @@ export async function getAuthorByEmail(email: string): Promise<Author | null> {
     if (error.code === 'PGRST116') {
       return null;
     }
-    console.error('Error fetching author:', error);
     throw error;
   }
 
@@ -495,7 +454,6 @@ export async function createAuthor(data: AuthorFormData): Promise<Author> {
     .single();
 
   if (error) {
-    console.error('Error creating author:', error);
     throw error;
   }
 
@@ -516,7 +474,6 @@ export async function updateAuthor(
     .single();
 
   if (error) {
-    console.error('Error updating author:', error);
     throw error;
   }
 
@@ -547,7 +504,6 @@ export async function searchBlogPosts(query: string): Promise<SearchResult[]> {
     .limit(10);
 
   if (error) {
-    console.error('Error searching blog posts:', error);
     throw error;
   }
 
@@ -612,7 +568,6 @@ export async function getRelatedPosts(
     .limit(limit);
 
   if (error) {
-    console.error('Error fetching related posts:', error);
     return [];
   }
 
@@ -646,7 +601,6 @@ export async function getRecentPosts(
   const { data, error } = await query;
 
   if (error) {
-    console.error('Error fetching recent posts:', error);
     return [];
   }
 
@@ -671,7 +625,6 @@ export async function getPopularPosts(limit: number = 5): Promise<BlogPost[]> {
     .limit(limit);
 
   if (error) {
-    console.error('Error fetching popular posts:', error);
     return [];
   }
 
@@ -739,7 +692,6 @@ export async function getAllPublishedPostSlugs(): Promise<string[]> {
     .lte('published_at', new Date().toISOString());
 
   if (error) {
-    console.error('Error fetching post slugs:', error);
     return [];
   }
 
@@ -754,7 +706,6 @@ export async function getAllCategorySlugs(): Promise<string[]> {
     .select('slug');
 
   if (error) {
-    console.error('Error fetching category slugs:', error);
     return [];
   }
 
